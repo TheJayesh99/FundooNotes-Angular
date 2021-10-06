@@ -2,18 +2,7 @@
     <div class="form">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-head-text">
-            <span id="f">F</span>
-            <span id="u">u</span>
-            <span id="n">n</span>
-            <span id="d">d</span>
-            <span id="o">o</span>
-            <span id="o">o</span>
-            <span id="n">N</span>
-            <span id="o">o</span>
-            <span id="t">t</span>
-            <span id="e">e</span>
-            <span id="s">s</span>
-            <br>
+            <img [src]="logoImage">
             <h2>
                 Sign in
                 <br>
@@ -49,7 +38,7 @@
             </div>
         </div>
         <div class="form-footer">
-            <div><button mat-button color="primary">Create Account</button></div>
+            <div><button mat-button color="primary" routerLink="/signup">Create Account</button></div>
             <div>
                 <button mat-flat-button color="primary" id="login-button" >Login</button>
             </div>
