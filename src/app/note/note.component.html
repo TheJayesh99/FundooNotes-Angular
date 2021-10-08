@@ -1,0 +1,66 @@
+<div class="mainContainer">
+    <div class="nav-bar">
+        <mat-toolbar>
+            <div class="logo-title">
+                <div class="menu">
+                    <button type="button" mat-button (click)="drawer.toggle()">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                </div>
+                <div class="title">
+                    <img [src]="fundooImage">
+                </div>
+            </div>
+            <div class="searchBar">
+                    <form class="example-form">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-icon>search</mat-icon>
+                          <span matPrefix> &nbsp;</span>
+                          <input type="search" matInput placeholder="search" (click)="value=true">
+                          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=false">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                        </mat-form-field>
+                    </form>
+            </div>
+            <div class="rightIcons">
+                <button mat-icon-button class="icon favorite-icon" aria-label="Example icon-button with heart icon">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button class="icon" aria-label="Example icon-button with share icon">
+                    <mat-icon>share</mat-icon>
+                </button>
+                <button mat-icon-button class="icon" aria-label="Example icon-button with share icon">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar>
+    </div>
+    <div class="mainContent">
+        <mat-drawer-container class="container" autosize>
+            <mat-drawer #drawer class="sidenav" mode="side">
+                <div class="side-nav-item">
+                    <div class="icon">
+                        <mat-icon>lightbulb </mat-icon>
+                    </div>
+                    <div class="icon-label">
+                        Notes
+                    </div>
+                </div>
+                <div class="side-nav-item">
+                    <div class="icon">
+                        <mat-icon>edit</mat-icon>
+                    </div>
+                    <div class="icon-label">
+                        Edit label
+                    </div>
+                </div>
+
+            </mat-drawer>
+            <div class="sidenav-content">
+                notes will display here
+            </div>
+        </mat-drawer-container>
+
+    </div>
+</div>
