@@ -1,17 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  configUrl = "http://127.0.0.1:8000"
+  server = "http://127.0.0.1:8000"
   registerUrl = "/user/register/"
   loginUrl = "/user/login/"
+  notesUrl = "/notes/"
   errorMessage: string | undefined;
+  token= "";
   
   constructor(
     private http: HttpClient,
@@ -19,7 +22,7 @@ export class AuthService {
     ) { }
 
   SignUp(signUpData:FormBuilder) {
-    this.http.post(this.configUrl+this.registerUrl,signUpData)
+    this.http.post(this.server+this.registerUrl,signUpData)
     .subscribe(
       data => {
         this.router.navigate(["login"])
@@ -32,10 +35,11 @@ export class AuthService {
   }
   
   login(loginData:FormBuilder):string | undefined{
-    this.http.post(this.configUrl+this.loginUrl,loginData)
+    this.http.post(this.server+this.loginUrl,loginData)
     .subscribe(
-      (data: any) => { 
-        localStorage.setItem('currentUser', data.data.token);
+      (data: any) => {
+        this.token =  data.data.token 
+        localStorage.setItem('currentUser', data.data.token );
         this.router.navigate(["notes"]);
 
       },
@@ -52,4 +56,10 @@ export class AuthService {
   get currentUserValue():string | null {
     return localStorage.getItem('currentUser');
 }
+
+  createNote(notesData:FormBuilder):Observable<any>{
+    return this.http.post(this.server+this.notesUrl,notesData,{
+      headers:new HttpHeaders().set("token", this.token)
+    })
+  }
 }
