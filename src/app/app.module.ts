@@ -15,18 +15,21 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NoteComponent } from './note/note.component';
+import { CreateNoteComponent } from './create-note/create-note.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    NoteComponent
+    NoteComponent,
+    CreateNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { NoteComponent } from './note/note.component';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

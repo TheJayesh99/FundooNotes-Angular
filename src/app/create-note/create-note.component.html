@@ -1,0 +1,17 @@
+<div>
+    <form [formGroup]="createNoteForm" (ngSubmit)="onSubmit()">
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+            <mat-form-field appearance="standard">
+                <input matInput type="text" placeholder="Title" formControlName="title" >
+            </mat-form-field>
+        </mat-expansion-panel-header>
+
+        <mat-form-field appearance="standard">
+            <input matInput type="text" placeholder="Description" formControlName="description">
+        </mat-form-field>
+        <br>
+        <button mat-button type="submit">Create Note</button>
+    </mat-expansion-panel>
+</form>
+</div>

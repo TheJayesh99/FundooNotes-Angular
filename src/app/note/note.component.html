@@ -3,7 +3,7 @@
         <mat-toolbar>
             <div class="logo-title">
                 <div class="menu">
-                    <button type="button" mat-button (click)="drawer.toggle()">
+                    <button type="button" mat-button (click)="drawer.open()">
                         <mat-icon>menu</mat-icon>
                     </button>
                 </div>
@@ -13,7 +13,7 @@
             </div>
             <div class="searchBar">
                     <form class="example-form">
-                        <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-form-field class="example-full-width" appearance="standard">
                             <mat-icon>search</mat-icon>
                           <span matPrefix> &nbsp;</span>
                           <input type="search" matInput placeholder="search" (click)="value=true">
@@ -58,7 +58,12 @@
 
             </mat-drawer>
             <div class="sidenav-content">
-                notes will display here
+                <div class="createNote">
+                    <app-create-note></app-create-note>
+                </div>
+                <div class="displayNotes">
+                    notes will display here
+                </div>
             </div>
         </mat-drawer-container>
 
