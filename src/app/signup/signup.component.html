@@ -91,6 +91,9 @@
                         <button mat-flat-button color="primary" id="login-button">Sign Up</button>
                     </div>
                 </div>
+                <div *ngIf="errorMessage" class="alert-error">
+                    SignUp Failed because A user with that username already exists
+                </div>
             </form>
         </div>
         <div class="image-signup">

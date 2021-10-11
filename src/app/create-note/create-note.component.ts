@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth/auth.service';
 
 @Component({
@@ -8,25 +9,26 @@ import { AuthService } from 'src/services/auth/auth.service';
   styleUrls: ['./create-note.component.scss']
 })
 export class CreateNoteComponent implements OnInit {
-  
+
   createNoteForm = this.fb.group({
-    title : ["",Validators.required],
-    description : [""],
+    title: ["", Validators.required],
+    description: [""],
   });
 
-  constructor( 
+  constructor(
     private fb: FormBuilder,
-    private auth: AuthService
-    ) {
-   
-   }
+    private auth: AuthService,
+    private router: Router
+  ) {
+
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log("i am submitteds");
-    if(this.createNoteForm.valid){
+    if (this.createNoteForm.valid) {
       console.log("i am valid");
       this.auth.createNote(this.createNoteForm.value).subscribe(
         data => {
@@ -34,7 +36,7 @@ export class CreateNoteComponent implements OnInit {
         },
         error => {
           console.log(error.error.message);
-          
+
         }
       )
     }

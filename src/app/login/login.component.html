@@ -43,5 +43,8 @@
                 <button mat-flat-button color="primary" id="login-button" >Login</button>
             </div>
         </div>
+        <div *ngIf="errorMessage" class="alert-error">
+            login Failed because <strong>{{errorMessage}}</strong>
+        </div>
     </form>
 </div>
