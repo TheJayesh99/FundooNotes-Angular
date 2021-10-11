@@ -1,0 +1,13 @@
+.notes{
+    width: 100%;
+}
+
+.note{
+    width: 200px;
+    margin: 2%;
+}
+
+.notes-group{
+    display: flex;
+    flex-flow: wrap;
+}

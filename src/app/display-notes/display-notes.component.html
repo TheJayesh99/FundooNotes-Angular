@@ -1,0 +1,16 @@
+<div class="notes-group">
+    <div *ngFor="let note of noteList" class="note" >
+        <mat-card>
+            <mat-card-title-group class="note">
+                <mat-card-title>{{note.title}}</mat-card-title>
+            </mat-card-title-group>
+            <mat-card-content>
+                {{note.description}}
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

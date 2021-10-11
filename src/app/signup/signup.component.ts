@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth/auth.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class SignupComponent implements OnInit {
   logoImage = "assets/images/FundooNotes.png"
   submitted = false;
   hide = true;
+  errorMessage: any;
 
   signupForm = this.fb.group({
     first_name: ['', Validators.required],
@@ -26,7 +28,8 @@ export class SignupComponent implements OnInit {
   
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -40,7 +43,13 @@ export class SignupComponent implements OnInit {
       return alert("password didn't match")
     }
     if (this.signupForm.valid) {
-      this.auth.SignUp(this.signupForm.value)
+      this.auth.SignUp(this.signupForm.value).subscribe(
+        data =>{
+          this.router.navigate(["/login"])
+        },
+        error =>{
+          this.errorMessage = error.error.message 
+        })
     }
   }
 

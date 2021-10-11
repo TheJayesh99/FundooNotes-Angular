@@ -16,12 +16,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCardModule} from '@angular/material/card'; 
 
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NoteComponent } from './note/note.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
+import { DisplayNotesComponent } from './display-notes/display-notes.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { CreateNoteComponent } from './create-note/create-note.component';
     LoginComponent,
     SignupComponent,
     NoteComponent,
-    CreateNoteComponent
+    CreateNoteComponent,
+    DisplayNotesComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { CreateNoteComponent } from './create-note/create-note.component';
     MatIconModule,
     MatSidenavModule,
     MatExpansionModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
