@@ -1,16 +1,25 @@
 <div class="notes-group">
-    <div *ngFor="let note of noteList" class="note" >
-        <mat-card>
-            <mat-card-title-group class="note">
-                <mat-card-title>{{note.title}}</mat-card-title>
+    <div *ngFor="let note of noteList ;let i = index" class="note">
+        <mat-card id="{{note.id}}" (mouseover)="showFooterAction(note)" (mouseleave)="stopFooterAction(note)">
+            <mat-card-title-group>
+                <mat-card-title>{{note.title}} </mat-card-title>
             </mat-card-title-group>
             <mat-card-content>
                 {{note.description}}
             </mat-card-content>
-            <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-            </mat-card-actions>
+            <div class="footer">
+                <mat-card-actions>
+                    <div *ngIf="note.id == showCard">
+                        <button mat-icon-button>
+                            <mat-icon>home</mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </div>
+                </mat-card-actions>
+            </div>
         </mat-card>
+        <!-- note.showfooterAction -->
     </div>
 </div>

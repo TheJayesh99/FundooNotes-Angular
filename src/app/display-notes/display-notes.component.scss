@@ -5,9 +5,17 @@
 .note{
     width: 200px;
     margin: 2%;
+    &:hover{
+        box-shadow: 3px 3px 3px gray;
+    }
 }
 
 .notes-group{
     display: flex;
     flex-flow: wrap;
 }
+
+.footer{
+    height: 5vh;
+}
+

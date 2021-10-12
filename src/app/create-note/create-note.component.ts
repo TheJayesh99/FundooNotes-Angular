@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth/auth.service';
+import {MatAccordion} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-create-note',
@@ -9,6 +9,13 @@ import { AuthService } from 'src/services/auth/auth.service';
   styleUrls: ['./create-note.component.scss']
 })
 export class CreateNoteComponent implements OnInit {
+
+  @Output() newItemEvent = new EventEmitter<boolean>();
+
+
+
+  @ViewChild(MatAccordion)
+  accordion: MatAccordion = new MatAccordion;
 
   createNoteForm = this.fb.group({
     title: ["", Validators.required],
@@ -18,7 +25,6 @@ export class CreateNoteComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
   ) {
 
   }
@@ -32,13 +38,19 @@ export class CreateNoteComponent implements OnInit {
       console.log("i am valid");
       this.auth.createNote(this.createNoteForm.value).subscribe(
         data => {
-          console.log(data);
+          console.log(data.data)
+          this.newNoteAdded(data.data)
         },
         error => {
           console.log(error.error.message);
-
         }
       )
     }
+  }
+
+  newNoteAdded(data:any){
+    console.log("emiting event");
+    
+    this.newItemEvent.emit(data)
   }
 }
