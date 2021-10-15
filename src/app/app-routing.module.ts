@@ -8,7 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   { path:"login",component:LoginComponent},
   { path:"signup",component:SignupComponent},
-  { path:"notes",component:NoteComponent , canActivate:[AuthGuard]},
+  { path:"notes",component:NoteComponent,canActivate:[AuthGuard]},
   { path:"",redirectTo: 'notes' ,pathMatch:'full'},
 ];
 

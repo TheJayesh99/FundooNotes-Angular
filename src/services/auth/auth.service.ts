@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
+import { Notes } from 'src/app/model/notes.model';
 
 
 @Injectable({
@@ -9,10 +10,11 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   
-  server = "http://127.0.0.1:8000"
-  registerUrl = "/user/register/"
-  loginUrl = "/user/login/"
-  notesUrl = "/notes/"
+  private readonly server = "http://127.0.0.1:8000"
+  private readonly registerUrl = "/user/register/"
+  private readonly loginUrl = "/user/login/"
+  private readonly notesUrl = "/notes/"
+  
   errorMessage: string | undefined;
   token = ""
   header = new HttpHeaders().set('token',this.getHeader())
@@ -51,6 +53,16 @@ export class AuthService {
       headers: this.header
     })
   }
+
+  updateNote(note:Notes):Observable<any>{
+    console.log(note);
+    
+    return this.http.put(
+      this.server+this.notesUrl,note,{
+        headers: this.header
+      })
+  }
+  
 }
 
 

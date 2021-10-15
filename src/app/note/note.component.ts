@@ -7,18 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NoteComponent implements OnInit {
 
-  @Input() item = "";
-
   fundooImage = "assets/images/FundooNotes.png";
-  displayNoteReload:string = "no";
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  newNoteAdded(item:any){
-    if(item){
-      this.displayNoteReload = item
-    }
-  }
 }

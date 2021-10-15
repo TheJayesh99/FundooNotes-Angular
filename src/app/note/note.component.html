@@ -53,10 +53,10 @@
             </mat-drawer>
             <div class="sidenav-content">
                 <div class="createNote">
-                    <app-create-note (newItemEvent)="newNoteAdded($event)"></app-create-note>
+                    <app-create-note></app-create-note>
                 </div>
                 <div class="displayNotes">
-                <app-display-notes [item]= "displayNoteReload"></app-display-notes>
+                <app-display-notes></app-display-notes>
                 </div>
             </div>
         </mat-drawer-container>

@@ -3,15 +3,33 @@
         <mat-accordion multi>
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
-                    <mat-form-field appearance="standard">
-                        <input matInput type="text" placeholder="Title" formControlName="title">
-                    </mat-form-field>
+                    <textarea class="UpdateNoteInput" matInput type="text" placeholder="Title" formControlName="title"
+                        [cdkTextareaAutosize]></textarea>
                 </mat-expansion-panel-header>
-
                 <mat-form-field appearance="standard">
-                    <input matInput type="text" placeholder="Description" formControlName="description">
+                    <mat-label></mat-label>
+                    <textarea class="UpdateNoteInput" matInput type="text" placeholder="Description"
+                        formControlName="description" [cdkTextareaAutosize]></textarea>
                 </mat-form-field>
                 <br>
+                <button mat-icon-button matTooltip="remind me" aria-label="over">
+                    <mat-icon class="note-icon-style">notifications</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="add collaborator" aria-label="over">
+                    <mat-icon class="note-icon-style">group_add</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="change color" aria-label="over">
+                    <mat-icon class="note-icon-style">color_lens</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="image" aria-label="over">
+                    <mat-icon class="note-icon-style">image</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="archive" aria-label="over">
+                    <mat-icon class="note-icon-style">archive</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="more" aria-label="over">
+                    <mat-icon class="note-icon-style">more_vert</mat-icon>
+                </button>
                 <button mat-button type="submit">Create Note</button>
                 <button mat-button type="reset" (click)="accordion.closeAll()">Close</button>
             </mat-expansion-panel>
