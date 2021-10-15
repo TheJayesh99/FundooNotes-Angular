@@ -1,0 +1,39 @@
+<div mat-dialog-content>
+  <div class="dialogContainer">
+    <form [formGroup]="updateNoteForm">
+
+      <input matInput formControlName="id" [value]="note.id" [hidden]="true">
+      <div class="dialog-item">
+        <textarea class="UpdateNoteInput title" formControlName="title" matInput placeholder="Title"
+          [cdkTextareaAutosize]></textarea>
+      </div>
+      <div class="dialog-item">
+        <textarea class="UpdateNoteInput" formControlName="description" matInput placeholder="Description"
+          [cdkTextareaAutosize]></textarea>
+
+      </div>
+      <div class="actionButtons">
+        <button mat-icon-button matTooltip="remind me" aria-label="over">
+          <mat-icon class="note-icon-style">notifications</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="add collaborator" aria-label="over">
+          <mat-icon class="note-icon-style">group_add</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="change color" aria-label="over">
+          <mat-icon class="note-icon-style">color_lens</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="image" aria-label="over">
+          <mat-icon class="note-icon-style">image</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="archive" aria-label="over">
+          <mat-icon class="note-icon-style">archive</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="more" aria-label="over">
+          <mat-icon class="note-icon-style">more_vert</mat-icon>
+        </button>
+        <button mat-button (click)="onNoClick()">Close</button>
+        <button mat-button [mat-dialog-close]="updateNoteForm" cdkFocusInitial>Update Note</button>
+      </div>
+    </form>
+  </div>
+</div>

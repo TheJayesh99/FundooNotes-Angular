@@ -1,25 +1,39 @@
 <div class="notes-group">
-    <div *ngFor="let note of noteList ;let i = index" class="note">
-        <mat-card id="{{note.id}}" (mouseover)="showFooterAction(note)" (mouseleave)="stopFooterAction(note)">
-            <mat-card-title-group>
-                <mat-card-title>{{note.title}} </mat-card-title>
-            </mat-card-title-group>
-            <mat-card-content>
-                {{note.description}}
-            </mat-card-content>
+    <div *ngFor="let note of noteList ;let i = index" class="spacing">
+        <mat-card class="note" id="{{note.id}}" (mouseover)="showFooterAction(note)"
+            (mouseleave)="stopFooterAction(note)">
+            <div class="notesDetails" (click)="openDialog(note)">
+                <mat-card-title-group>
+                    <mat-card-title>{{note.title}} </mat-card-title>
+                </mat-card-title-group>
+                <mat-card-content>
+                    {{note.description}}
+                </mat-card-content>
+            </div>
             <div class="footer">
                 <mat-card-actions>
                     <div *ngIf="note.id == showCard">
-                        <button mat-icon-button>
-                            <mat-icon>home</mat-icon>
+                        <button mat-icon-button matTooltip="remind me" aria-label="over">
+                            <mat-icon class="note-icon-style">notifications</mat-icon>
                         </button>
-                        <button mat-icon-button>
-                            <mat-icon>clear</mat-icon>
+                        <button mat-icon-button matTooltip="add collaborator" aria-label="over">
+                            <mat-icon class="note-icon-style">group_add</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="change color" aria-label="over">
+                            <mat-icon class="note-icon-style">color_lens</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="image" aria-label="over">
+                            <mat-icon class="note-icon-style">image</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="archive" aria-label="over">
+                            <mat-icon class="note-icon-style">archive</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="more" aria-label="over">
+                            <mat-icon class="note-icon-style">more_vert</mat-icon>
                         </button>
                     </div>
                 </mat-card-actions>
             </div>
         </mat-card>
-        <!-- note.showfooterAction -->
     </div>
 </div>

@@ -1,5 +1,16 @@
 .create-note{
+    width: max-content;
+}
+.note-icon-style{
+    transform: scale(0.8);
+    padding-bottom: 2px;
+}
 
-    margin-left: 100%;
-    width: 250%;
+.UpdateNoteInput{
+    width: 100%;
+    border: 0px;
+    resize: none;
+    &:hover{
+        background-color:inherit ;
+    }
 }
