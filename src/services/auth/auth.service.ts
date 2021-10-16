@@ -62,6 +62,18 @@ export class AuthService {
         headers: this.header
       })
   }
+
+  deleteNote(note:Notes):Observable<any>{
+    const options = {
+      headers: this.header,
+      body: {
+       id:note.id
+      },
+    };
+    
+    return this.http.delete(
+      this.server+this.notesUrl,options)
+  }
   
 }
 

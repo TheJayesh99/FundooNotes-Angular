@@ -1,4 +1,3 @@
-import { ComponentType } from '@angular/cdk/portal';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/services/auth/auth.service';
@@ -14,7 +13,8 @@ import { UpdateNotesComponent } from '../update-notes/update-notes.component';
 export class DisplayNotesComponent implements OnInit {
   noteList: Notes[] = []
   showButton: boolean = false;
-  showCard: number = 0
+  showCard: number = 0;
+  openMenu: number = 0;
 
   constructor(
     private auth: AuthService,
@@ -37,6 +37,14 @@ export class DisplayNotesComponent implements OnInit {
 
   stopFooterAction(note: Notes) {
     this.showCard = 0
+  }
+
+  showMenu(note: Notes) {
+    this.openMenu = note.id
+
+  }
+  closeMenu(note: Notes) {
+    this.openMenu = 0
   }
 
   displayNotes() {
@@ -69,5 +77,16 @@ export class DisplayNotesComponent implements OnInit {
         )
       }
     })
+  }
+
+  deleteNote(note: Notes) {
+    this.auth.deleteNote(note).subscribe(
+      data => {
+        this.displayNotes()
+      },
+      error =>{
+        console.log(error);
+      }
+    )
   }
 }

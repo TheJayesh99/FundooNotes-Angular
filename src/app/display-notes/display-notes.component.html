@@ -12,7 +12,7 @@
             </div>
             <div class="footer">
                 <mat-card-actions>
-                    <div *ngIf="note.id == showCard">
+                    <div *ngIf="note.id == showCard || note.id == openMenu">
                         <button mat-icon-button matTooltip="remind me" aria-label="over">
                             <mat-icon class="note-icon-style">notifications</mat-icon>
                         </button>
@@ -28,11 +28,25 @@
                         <button mat-icon-button matTooltip="archive" aria-label="over">
                             <mat-icon class="note-icon-style">archive</mat-icon>
                         </button>
-                        <button mat-icon-button matTooltip="more" aria-label="over">
-                            <mat-icon class="note-icon-style">more_vert</mat-icon>
+
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" (onMenuOpen)="showMenu(note)" (menuClosed)="closeMenu(note)">
+                            <mat-icon>more_vert</mat-icon>
                         </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="deleteNote(note)">
+                                <span>Delete</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Add Label</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Make a copy</span>
+                            </button>
+                        </mat-menu>
                     </div>
+
                 </mat-card-actions>
+
             </div>
         </mat-card>
     </div>
