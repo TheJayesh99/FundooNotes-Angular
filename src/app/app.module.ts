@@ -19,6 +19,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatMenuModule} from '@angular/material/menu'; 
 
 import {ReactiveFormsModule } from '@angular/forms';
 
@@ -54,6 +55,7 @@ import { UpdateNotesComponent } from './update-notes/update-notes.component';
     MatCardModule,
     MatTooltipModule,
     MatDialogModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
