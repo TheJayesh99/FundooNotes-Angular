@@ -37,6 +37,7 @@ export class CreateNoteComponent implements OnInit {
       this.auth.createNote(this.createNoteForm.value).subscribe(
         data => {
           this.helper.noteAdded(data.data.note[0])
+          this.accordion.closeAll()
         },
         error => {
           console.log(error.error.message);

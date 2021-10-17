@@ -47,8 +47,9 @@
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  height: 10vh;
+  height: 8vh;
   align-items: center;
+  margin-top: 4%;
 }
 
 .icon-label {
@@ -56,8 +57,9 @@
   font-size: medium;
 }
 
-.icon{
-  padding-left: 10px;
+.icon {
+  padding-bottom: 10px;
+  margin-left: 2%;
 }
 .container {
   width: 100%;
@@ -92,15 +94,18 @@
 .side-nav-links {
   text-decoration: none;
   color: black;
+
   &:hover {
     background-color: rgb(236, 235, 235);
     border-radius: 25px;
   }
-  &:active {
-    background-color: yellow;
-  }
 }
 
-a:focus{
-  color: red;
+.active-list-item {
+  background-color: #feefc3 !important;
+  border-radius: 25px;
+}
+
+.icon-sidenav{
+  margin-left: 10%;
 }
