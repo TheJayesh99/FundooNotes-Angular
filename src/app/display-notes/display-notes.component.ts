@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/services/auth/auth.service';
 import { HelperService } from 'src/services/helper/helper.service';
@@ -19,7 +19,7 @@ export class DisplayNotesComponent implements OnInit {
   constructor(
     private auth: AuthService,
     public dialog: MatDialog,
-    private helper: HelperService
+    private helper: HelperService,
   ) { }
 
   ngOnInit(): void {
@@ -83,10 +83,15 @@ export class DisplayNotesComponent implements OnInit {
     this.auth.deleteNote(note).subscribe(
       data => {
         this.displayNotes()
+        this.helper.alerts_box("note deleted","close")
       },
       error =>{
         console.log(error);
       }
     )
+  }
+
+  addLabel(note:Notes){
+    return note
   }
 }

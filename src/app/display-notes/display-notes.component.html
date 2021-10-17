@@ -1,53 +1,59 @@
 <div class="notes-group">
-    <div *ngFor="let note of noteList ;let i = index" class="spacing">
-        <mat-card class="note" id="{{note.id}}" (mouseover)="showFooterAction(note)"
-            (mouseleave)="stopFooterAction(note)">
-            <div class="notesDetails" (click)="openDialog(note)">
-                <mat-card-title-group>
-                    <mat-card-title>{{note.title}} </mat-card-title>
-                </mat-card-title-group>
-                <mat-card-content>
-                    {{note.description}}
-                </mat-card-content>
-            </div>
-            <div class="footer">
-                <mat-card-actions>
-                    <div *ngIf="note.id == showCard || note.id == openMenu">
-                        <button mat-icon-button matTooltip="remind me" aria-label="over">
-                            <mat-icon class="note-icon-style">notifications</mat-icon>
-                        </button>
-                        <button mat-icon-button matTooltip="add collaborator" aria-label="over">
-                            <mat-icon class="note-icon-style">group_add</mat-icon>
-                        </button>
-                        <button mat-icon-button matTooltip="change color" aria-label="over">
-                            <mat-icon class="note-icon-style">color_lens</mat-icon>
-                        </button>
-                        <button mat-icon-button matTooltip="image" aria-label="over">
-                            <mat-icon class="note-icon-style">image</mat-icon>
-                        </button>
-                        <button mat-icon-button matTooltip="archive" aria-label="over">
-                            <mat-icon class="note-icon-style">archive</mat-icon>
-                        </button>
+  <div *ngFor="let note of noteList ;let i = index" class="spacing">
+    <mat-card class="note" id="{{note.id}}" (mouseover)="showFooterAction(note)" (mouseleave)="stopFooterAction(note)">
+      <div class="notesDetails" (click)="openDialog(note)">
+        <mat-card-title-group>
+          <mat-card-title>{{note.title}} {{note.id}} </mat-card-title>
+        </mat-card-title-group>
+        <mat-card-content>
+          {{note.description}}
+        </mat-card-content>
+        <div class="labels">
+          <mat-chip-list aria-label="labels">
+            <mat-chip *ngFor="let label of note.label">{{label.label}}</mat-chip>
+            </mat-chip-list>
+        </div>
+      </div>
+      <div class="footer">
+        <mat-card-actions>
+          <div *ngIf="note.id == showCard || note.id == openMenu">
+            <button mat-icon-button matTooltip="remind me" aria-label="over">
+              <mat-icon class="note-icon-style">notifications</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="add collaborator" aria-label="over">
+              <mat-icon class="note-icon-style">group_add</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="change color" aria-label="over">
+              <mat-icon class="note-icon-style">color_lens</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="image" aria-label="over">
+              <mat-icon class="note-icon-style">image</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="archive" aria-label="over">
+              <mat-icon class="note-icon-style">archive</mat-icon>
+            </button>
 
-                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" (onMenuOpen)="showMenu(note)" (menuClosed)="closeMenu(note)">
-                            <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="deleteNote(note)">
-                                <span>Delete</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Add Label</span>
-                            </button>
-                            <button mat-menu-item>
-                                <span>Make a copy</span>
-                            </button>
-                        </mat-menu>
-                    </div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+              (onMenuOpen)="showMenu(note)" (menuClosed)="closeMenu(note)">
+              <mat-icon>more_vert</mat-icon>
+            </button>
 
-                </mat-card-actions>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="deleteNote(note)">
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item (click)="addLabel(note)">
+                <span>Add Label</span>
+              </button>
+              <button mat-menu-item>
+                <span>Make a copy</span>
+              </button>
+            </mat-menu>
+          </div>
 
-            </div>
-        </mat-card>
-    </div>
+        </mat-card-actions>
+
+      </div>
+    </mat-card>
+  </div>
 </div>

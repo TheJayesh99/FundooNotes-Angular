@@ -15,7 +15,8 @@
 }
 .notes-group{
     display: flex;
-    flex-flow: wrap;
+    flex-flow: column wrap;
+    height: 100vh;
 }
 
 .footer{

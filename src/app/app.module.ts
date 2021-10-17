@@ -20,6 +20,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatMenuModule} from '@angular/material/menu'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatChipsModule} from '@angular/material/chips';
 
 import {ReactiveFormsModule } from '@angular/forms';
 
@@ -28,6 +30,7 @@ import { NoteComponent } from './note/note.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { DisplayNotesComponent } from './display-notes/display-notes.component';
 import { UpdateNotesComponent } from './update-notes/update-notes.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,7 @@ import { UpdateNotesComponent } from './update-notes/update-notes.component';
     NoteComponent,
     CreateNoteComponent,
     DisplayNotesComponent,
-    UpdateNotesComponent
+    UpdateNotesComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,8 @@ import { UpdateNotesComponent } from './update-notes/update-notes.component';
     MatTooltipModule,
     MatDialogModule,
     MatMenuModule,
+    MatSnackBarModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
