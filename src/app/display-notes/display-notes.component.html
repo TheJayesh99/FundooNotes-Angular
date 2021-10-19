@@ -1,9 +1,9 @@
 <div class="notes-group">
   <div *ngFor="let note of noteList ;let i = index" class="spacing">
-    <mat-card class="note" id="{{note.id}}" (mouseover)="showFooterAction(note)" (mouseleave)="stopFooterAction(note)">
+    <mat-card class="note " id="{{note.id}}" (mouseover)="showFooterAction(note)" (mouseleave)="stopFooterAction(note)">
       <div class="notesDetails" (click)="openDialog(note)">
         <mat-card-title-group>
-          <mat-card-title>{{note.title}} {{note.id}} </mat-card-title>
+          <mat-card-title>{{note.title}}</mat-card-title>
         </mat-card-title-group>
         <mat-card-content>
           {{note.description}}
@@ -29,7 +29,7 @@
             <button mat-icon-button matTooltip="image" aria-label="over">
               <mat-icon class="note-icon-style">image</mat-icon>
             </button>
-            <button mat-icon-button matTooltip="archive" aria-label="over">
+            <button mat-icon-button matTooltip="archive" aria-label="over" (click)="archiveNote(note)">
               <mat-icon class="note-icon-style">archive</mat-icon>
             </button>
 

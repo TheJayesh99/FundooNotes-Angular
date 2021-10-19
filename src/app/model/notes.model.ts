@@ -6,5 +6,7 @@ export interface Notes {
     description:string;
     label:label[];
     collaborators:string[];
+    is_archive:boolean
+    is_binned:boolean
 }
 

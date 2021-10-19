@@ -8,7 +8,7 @@
                     </button>
                 </div>
                 <div class="title">
-                    <img [src]="fundooImage">
+                    {{title}}
                 </div>
             </div>
             <div class="searchBar">
@@ -33,7 +33,7 @@
     <div class="mainContent">
         <mat-drawer-container class="container" autosize>
             <mat-drawer class="sidenav" mode="side" opened>
-                <a routerLink="/notes" class="side-nav-links side-nav-item" routerLinkActive="active-list-item">
+                <a routerLink="./home" class="side-nav-links side-nav-item" routerLinkActive="active-list-item">
                     <div class="icon-sidenav">
                         <mat-icon>lightbulb </mat-icon>
                     </div>
@@ -41,7 +41,7 @@
                         Notes
                     </div>
                 </a>
-                <a routerLink="/edit" class="side-nav-links side-nav-item" routerLinkActive="active-list-item">
+                <a routerLink="./edit" class="side-nav-links side-nav-item" routerLinkActive="active-list-item">
                     <div class="icon-sidenav">
                         <mat-icon>edit</mat-icon>
                     </div>
@@ -49,15 +49,26 @@
                         Edit label
                     </div>
                 </a>
+                <a routerLink="./archive" class="side-nav-links side-nav-item" routerLinkActive="active-list-item">
+                    <div class="icon-sidenav">
+                        <mat-icon>archive</mat-icon>
+                    </div>
+                    <div class="icon-label">
+                        Archive
+                    </div>
+                </a>
+                <a routerLink="./bin" class="side-nav-links side-nav-item" routerLinkActive="active-list-item">
+                    <div class="icon-sidenav">
+                        <mat-icon>delete</mat-icon>
+                    </div>
+                    <div class="icon-label">
+                        Bin
+                    </div>
+                </a>
 
             </mat-drawer>
             <div class="sidenav-content">
-                <div class="createNote">
-                    <app-create-note></app-create-note>
-                </div>
-                <div class="displayNotes">
-                <app-display-notes></app-display-notes>
-                </div>
+                <router-outlet></router-outlet>
             </div>
         </mat-drawer-container>
 

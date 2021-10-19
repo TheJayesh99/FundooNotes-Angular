@@ -13,7 +13,9 @@ export class HelperService {
     title: '',
     description: '',
     label: [],
-    collaborators: []
+    collaborators: [],
+    is_archive: false,
+    is_binned: false
   }
 
   noteNew:Subject<Notes> = new Subject<Notes>();
@@ -25,10 +27,36 @@ export class HelperService {
   }
 
   alerts_box(message:string,close_message:string){
-    this.alert.open('Note Deleted', 'close', {
+    this.alert.open(message,close_message, {
       duration:5000,
       horizontalPosition: "start",
       verticalPosition: "bottom",
     });
+  }
+
+  noteCheck(note:Notes){
+    let noteData:any = {}
+    noteData = note
+    if (note.label.length == 0){
+      delete noteData.label;
+    }
+    else{
+      let labelList = []
+      for (let label of note.label){
+        labelList.push(label.id)
+      }
+      noteData.label = labelList
+    }
+    if (note.collaborators.length == 0){
+      delete noteData.collaborators;
+    }
+    else{
+      let collabList = []
+      for (let label of note.label){
+        collabList.push(label.id)
+      }
+      noteData.collaborators = collabList
+    }
+    return noteData
   }
 }
