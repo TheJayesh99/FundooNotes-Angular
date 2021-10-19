@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/services/auth/auth.service';
 import { HelperService } from 'src/services/helper/helper.service';
@@ -6,16 +6,18 @@ import { Notes } from '../model/notes.model';
 import { UpdateNotesComponent } from '../update-notes/update-notes.component';
 
 @Component({
-  selector: 'app-display-notes',
-  templateUrl: './display-notes.component.html',
-  styleUrls: ['./display-notes.component.scss']
+  selector: 'app-archive',
+  templateUrl: './archive.component.html',
+  styleUrls: ['./archive.component.scss']
 })
-export class DisplayNotesComponent implements OnInit {
+export class ArchiveComponent implements OnInit {
+
   noteList: Notes[] = []
   showButton: boolean = false;
   showCard: number = 0;
   openMenu: number = 0;
-  noteData:any = {}
+  noteData: any = {};
+
   constructor(
     private auth: AuthService,
     public dialog: MatDialog,
@@ -51,8 +53,8 @@ export class DisplayNotesComponent implements OnInit {
     this.auth.fetchNotes().subscribe(
       data => {
         console.log(data.data.notelist);
-        for (let note  of data.data.notelist){
-          if (!note.is_binned && !note.is_archive){
+        for(let note of data.data.notelist){
+          if( !note.is_binned && note.is_archive){
             this.noteList.push(note)
           }
         }
@@ -87,27 +89,26 @@ export class DisplayNotesComponent implements OnInit {
     note.is_binned = true;
     this.updateNote(note)
     this.helper.alerts_box("Note added to trash", "close")
-    
   }
 
-  archiveNote(note:Notes){
-    note.is_archive = true;
+  unArchiveNote(note: Notes) {
+    note.is_archive = false;
     this.updateNote(note)
   }
 
-  updateNote(note:Notes){
+  updateNote(note: Notes) {
     this.noteData = this.helper.noteCheck(note)
     this.auth.updateNote(this.noteData).subscribe(
       data => {
         this.displayNotes()
       },
-      error =>{
+      error => {
         console.log(error);
       }
     )
   }
 
-  addLabel(note:Notes){
+  addLabel(note: Notes) {
     return note
   }
 }

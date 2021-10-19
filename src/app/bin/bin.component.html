@@ -1,0 +1,37 @@
+<div class="notes-group">
+    <div *ngFor="let note of noteList ;let i = index" class="spacing">
+
+        <mat-card  class="note" id="{{note.id}}" (mouseover)="showFooterAction(note)"
+            (mouseleave)="stopFooterAction(note)">
+            <div class="notesDetails" (click)="openDialog(note)">
+                <mat-card-title-group>
+                    <mat-card-title>{{note.title}}</mat-card-title>
+                </mat-card-title-group>
+                <mat-card-content>
+                    {{note.description}}
+                </mat-card-content>
+                <div class="labels">
+                    <mat-chip-list aria-label="labels">
+                        <mat-chip *ngFor="let label of note.label">{{label.label}}</mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
+            <div class="footer">
+                <mat-card-actions>
+                    <div *ngIf="note.id == showCard || note.id == openMenu">
+
+                        <button mat-icon-button matTooltip="undo delete" aria-label="over" (click) = "undoDelete(note)">
+                            <mat-icon class="note-icon-style">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="delete" aria-label="over" (click) = "deleteNote(note)">
+                            <mat-icon class="note-icon-style">delete_forever</mat-icon>
+                        </button>
+
+                    </div>
+
+                </mat-card-actions>
+
+            </div>
+        </mat-card>
+    </div>
+</div>

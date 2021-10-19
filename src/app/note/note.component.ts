@@ -12,5 +12,5 @@ export class NoteComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  title = "Notes"
 }

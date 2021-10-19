@@ -30,6 +30,9 @@ import { NoteComponent } from './note/note.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { DisplayNotesComponent } from './display-notes/display-notes.component';
 import { UpdateNotesComponent } from './update-notes/update-notes.component';
+import { ArchiveComponent } from './archive/archive.component';
+import { BinComponent } from './bin/bin.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { UpdateNotesComponent } from './update-notes/update-notes.component';
     CreateNoteComponent,
     DisplayNotesComponent,
     UpdateNotesComponent,
+    ArchiveComponent,
+    BinComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
