@@ -26,3 +26,23 @@
     transform: scale(0.8);
     padding-bottom: 2px;
 }
+
+.notFound{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+}
+
+.notFound-text{
+    color: #cbcbcb;
+    font-size: xx-large  ;
+}
+
+.notFound-icon{
+    transform: scale(5);
+    color: #cbcbcb;
+    margin-bottom: 5%;
+}

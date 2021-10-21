@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable} from 'rxjs';
+import { label } from 'src/app/model/label.model';
 import { Notes } from 'src/app/model/notes.model';
 
 
@@ -14,6 +15,9 @@ export class AuthService {
   private readonly registerUrl = "/user/register/"
   private readonly loginUrl = "/user/login/"
   private readonly notesUrl = "/notes/"
+  private readonly userlabelUrl = "/notes/userLabels/"
+  private readonly labelNotesUrl = "/notes/noteLabel/"
+  private readonly labelUrl = "/notes/label/"
   
   errorMessage: string | undefined;
   token = ""
@@ -75,6 +79,45 @@ export class AuthService {
       this.server+this.notesUrl,options)
   }
   
+  userlabels():Observable<any> {
+    return this.http.get(this.server+this.userlabelUrl,{
+      headers:this.header
+    })    
+  }
+
+  labeledNotes(label_id:number):Observable<any>{
+    return this.http.get(this.server+this.labelNotesUrl+label_id,{
+      headers:this.header
+    })
+  }
+
+  getlabel(label_id:number):Observable<any>{
+    return this.http.get(this.server+this.labelUrl+label_id,{
+      headers:this.header
+    })
+  }
+
+  createLabel(labelData:FormBuilder):Observable<any>{
+    return this.http.post(this.server+this.labelUrl,labelData,{
+      headers:this.header
+    })
+  }
+
+  deleteLabel(label_id:number):Observable<any>{
+    const options = {
+      headers: this.header,
+      body: {
+       id:label_id
+      },
+    };
+    return this.http.delete(this.server+this.labelUrl,options)
+  }
+
+  updatelabel(label:label):Observable<any>{
+    return this.http.put(this.server+this.labelUrl,label,{
+      headers:this.header
+    })
+  }
 }
 
 

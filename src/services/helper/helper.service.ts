@@ -19,6 +19,7 @@ export class HelperService {
   }
 
   noteNew:Subject<Notes> = new Subject<Notes>();
+  newTitle:Subject<string> = new Subject<string>();
 
   constructor(private alert: MatSnackBar) { }
 
@@ -59,4 +60,9 @@ export class HelperService {
     }
     return noteData
   }
+
+
+title(title:string){
+  this.newTitle.next(title)
+}
 }

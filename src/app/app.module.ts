@@ -33,6 +33,8 @@ import { UpdateNotesComponent } from './update-notes/update-notes.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { BinComponent } from './bin/bin.component';
 import { HomeComponent } from './home/home.component';
+import { EditlabelComponent } from './editlabel/editlabel.component';
+import { DisplayLabelNotesComponent } from './display-label-notes/display-label-notes.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { HomeComponent } from './home/home.component';
     ArchiveComponent,
     BinComponent,
     HomeComponent,
+    EditlabelComponent,
+    DisplayLabelNotesComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,57 @@
+<div mat-dialog-content>
+  <div class="dialogContainer">
+    <form [formGroup]="labelForm">
+      <div class="create-label">
+        <div>
+          <mat-form-field class="labelInputForm">
+            <mat-label>new label</mat-label>
+            <input matInput type="text" class="UpdateLabelInput" formControlName="label" matInput
+              placeholder="create new label">
+          </mat-form-field>
+        </div>
+        <div class="eidt-label-icon">
+          <button mat-icon-button (click)="createNewLabel()">
+            <mat-icon>done</mat-icon>
+          </button>
+        </div>
+      </div>
+    </form>
+    <br>
+    <form [formGroup]="updateLabelForm">
+      <div *ngFor="let label of labelList" class="labelList">
+        <div class="leftGroup">
+          <div class="edit-label-icon">
+            <button mat-icon-button (click)="removeLabel(label)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="label.id == editId; else elseEdit">
+            <div>
+              <input matInput type="text" class="UpdateLabelInput" formControlName="label"
+                placeholder="{{label.label}}">
+            </div>
+          </div>
+          <ng-template #elseEdit>
+            <div>
+              {{label.label}}
+            </div>
+          </ng-template>
+        </div>
+        <div *ngIf="label.id == editId; else elseBlock">
+          <button mat-icon-button (click)="updateLabel(label)">
+            <mat-icon class="edit-label-icon">done</mat-icon>
+          </button>
+        </div>
+        <ng-template #elseBlock>
+          <div class="edit-label-icon">
+            <button mat-icon-button (click)="editLabel(label)">
+            <mat-icon class="edit-label-icon">edit</mat-icon>
+            </button>
+          </div>
+        </ng-template>
+      </div>
+    </form>
+    <hr>
+    <button mat-button (click)="onNoClick()">Done</button>
+  </div>
+</div>

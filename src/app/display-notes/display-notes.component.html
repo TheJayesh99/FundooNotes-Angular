@@ -11,7 +11,7 @@
         <div class="labels">
           <mat-chip-list aria-label="labels">
             <mat-chip *ngFor="let label of note.label">{{label.label}}</mat-chip>
-            </mat-chip-list>
+          </mat-chip-list>
         </div>
       </div>
       <div class="footer">
@@ -39,17 +39,26 @@
             </button>
 
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="deleteNote(note)">
-                <span>Delete</span>
-              </button>
-              <button mat-menu-item (click)="addLabel(note)">
-                <span>Add Label</span>
-              </button>
-              <button mat-menu-item>
-                <span>Make a copy</span>
-              </button>
+
+              <div *ngIf="label; else elseBlock">
+                <input mat-menu-item type="text" matInput placeholder="oye menu oye ">
+              </div>
+
+              <ng-template #elseBlock>
+                <button mat-menu-item (click)="deleteNote(note)">
+                  <span>Delete</span>
+                </button>
+                <button mat-menu-item (click)="showAddlabel()" menuOpened>
+                  <span>Add Label</span>
+                </button>
+                <button mat-menu-item>
+                  <span>Make a copy</span>
+                </button>
+              </ng-template>
+
             </mat-menu>
           </div>
+
 
         </mat-card-actions>
 
