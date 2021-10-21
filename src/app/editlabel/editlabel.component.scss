@@ -1,0 +1,57 @@
+// .dialogContainer{
+//   overflow: clip;
+// }
+
+.labelInputForm{
+  width: 70%;
+  height: 4vh;
+}
+
+.UpdateLabelInput {
+    width: 100%;
+    border: 0px;
+    resize: none;
+    font-style: inherit;
+    &:hover {
+      background-color: inherit;
+    }
+  }
+  
+  .note-icon-style {
+    transform: scale(0.8);
+    padding-bottom: 2px;
+  }
+  
+  .from-full-width{
+      width: 100%;
+  }
+  
+  .title{
+    font-size: 24px;
+  font-weight: 500;
+  }
+  
+  .dialog-item{
+    width: 100%;
+    margin: 2%;
+  }
+
+.edit-label-icon{
+  transform: scale(0.8);
+}
+.labelList{
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftGroup{
+  display: flex;
+  align-items: center;
+}
+
+.create-label{
+  display: flex;
+  align-items: center;
+}

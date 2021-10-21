@@ -1,4 +1,14 @@
 <div class="notes-group">
+    <div *ngIf="noteList.length == 0;else elseBlock" class="notFound">
+        <div class="notFound-icon">
+          <mat-icon>delete_outline</mat-icon>
+        </div>
+        <br>
+        <div class="notFound-text">
+            No notes in Recycle Bin
+        </div>
+    </div>
+    <ng-template #elseBlock>
     <div *ngFor="let note of noteList ;let i = index" class="spacing">
 
         <mat-card  class="note" id="{{note.id}}" (mouseover)="showFooterAction(note)"
@@ -21,7 +31,7 @@
                     <div *ngIf="note.id == showCard || note.id == openMenu">
 
                         <button mat-icon-button matTooltip="undo delete" aria-label="over" (click) = "undoDelete(note)">
-                            <mat-icon class="note-icon-style">delete</mat-icon>
+                            <mat-icon class="note-icon-style">restore_from_trash</mat-icon>
                         </button>
                         <button mat-icon-button matTooltip="delete" aria-label="over" (click) = "deleteNote(note)">
                             <mat-icon class="note-icon-style">delete_forever</mat-icon>
@@ -34,4 +44,5 @@
             </div>
         </mat-card>
     </div>
+</ng-template>
 </div>

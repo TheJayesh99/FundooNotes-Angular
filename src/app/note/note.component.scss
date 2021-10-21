@@ -30,9 +30,12 @@
   align-items: center;
 }
 
+.title{
+ color: #5f6368;
+}
 .searchBar {
   width: 40%;
-  background-color: rgb(236, 235, 235);
+  background-color: #f1f3f4;
   padding: 9px;
   border-radius: 10px;
   margin-right: 13%;
@@ -96,4 +99,13 @@
 
 .icon-sidenav{
   margin-left: 10%;
+}
+
+.button {
+  background-color: white;
+  border: none;
+  &:hover{
+    background-color: rgb(236, 235, 235);
+    border-radius: 25px;
+  }
 }

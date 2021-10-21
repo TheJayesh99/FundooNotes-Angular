@@ -26,6 +26,7 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit(): void {
     this.displayNotes()
+    this.helper.title("Archive")
     this.helper.noteNew.subscribe(
       data => {
         this.displayNotes()
@@ -53,6 +54,7 @@ export class ArchiveComponent implements OnInit {
     this.auth.fetchNotes().subscribe(
       data => {
         console.log(data.data.notelist);
+        this.noteList = []
         for(let note of data.data.notelist){
           if( !note.is_binned && note.is_archive){
             this.noteList.push(note)

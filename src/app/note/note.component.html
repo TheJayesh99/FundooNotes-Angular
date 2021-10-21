@@ -41,14 +41,25 @@
                         Notes
                     </div>
                 </a>
-                <a routerLink="./edit" class="side-nav-links side-nav-item" routerLinkActive="active-list-item">
+                <div *ngFor="let labels of labelsList">
+                    <a routerLink="./label/{{labels.id}}" class="side-nav-links side-nav-item"
+                        routerLinkActive="active-list-item">
+                        <div class="icon-sidenav">
+                            <mat-icon>label_outline</mat-icon>
+                        </div>
+                        <div class="icon-label">
+                            {{labels.label}}
+                        </div>
+                    </a>
+                </div>
+                <button (click)="openDialog()" class="side-nav-links side-nav-item button">
                     <div class="icon-sidenav">
                         <mat-icon>edit</mat-icon>
                     </div>
                     <div class="icon-label">
-                        Edit label
+                        Edit Label
                     </div>
-                </a>
+                </button>
                 <a routerLink="./archive" class="side-nav-links side-nav-item" routerLinkActive="active-list-item">
                     <div class="icon-sidenav">
                         <mat-icon>archive</mat-icon>
@@ -65,7 +76,6 @@
                         Bin
                     </div>
                 </a>
-
             </mat-drawer>
             <div class="sidenav-content">
                 <router-outlet></router-outlet>

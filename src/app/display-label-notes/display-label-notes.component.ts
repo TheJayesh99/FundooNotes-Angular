@@ -1,34 +1,57 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/services/auth/auth.service';
 import { HelperService } from 'src/services/helper/helper.service';
 import { Notes } from '../model/notes.model';
 import { UpdateNotesComponent } from '../update-notes/update-notes.component';
 
 @Component({
-  selector: 'app-display-notes',
-  templateUrl: './display-notes.component.html',
-  styleUrls: ['./display-notes.component.scss']
+  selector: 'app-display-label-notes',
+  templateUrl: './display-label-notes.component.html',
+  styleUrls: ['./display-label-notes.component.scss']
 })
-export class DisplayNotesComponent implements OnInit {
-  noteList: Notes[] = []
-  showButton: boolean = false;
+export class DisplayLabelNotesComponent implements OnInit {
+
+  noteList:Notes[]= [];
   showCard: number = 0;
-  openMenu: number = 0;
-  noteData:any = {}
-  label = false;
+  openMenu: number= 0;
+  noteData:any = {};
+  label: boolean = false;
+  label_id:number = 0
+  // elseBlock:any;
+
   constructor(
+    private route: ActivatedRoute,
     private auth: AuthService,
     public dialog: MatDialog,
     private helper: HelperService,
-  ) { }
-
+    ) 
+    {
+      this.route.params.subscribe( params => {
+        this.label_id = params.id
+        this.getLabelName()
+        this.getNotes()
+      } );
+      
+     }
   ngOnInit(): void {
-    this.displayNotes()
-    this.helper.title("Notes")
-    this.helper.noteNew.subscribe(
+    
+  }
+  
+  getLabelName(){
+    this.auth.getlabel(this.label_id).subscribe(
+      data=>{
+        console.log(data.data.label[0].label);
+        this.helper.newTitle.next(data.data.label[0].label)
+      }
+    )
+  }
+
+  getNotes(){
+    this.auth.labeledNotes(this.label_id).subscribe(
       data => {
-        this.displayNotes()
+        this.noteList = data.data.notelist;           
       }
     )
   }
@@ -49,22 +72,6 @@ export class DisplayNotesComponent implements OnInit {
     this.openMenu = 0
   }
 
-  displayNotes() {
-    this.auth.fetchNotes().subscribe(
-      data => {
-        console.log(data.data.notelist);
-        this.noteList = []
-        for (let note  of data.data.notelist){
-          if (!note.is_binned && !note.is_archive){
-            this.noteList.push(note)
-          }
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
 
   openDialog(note: Notes): void {
     const dialogRef = this.dialog.open(UpdateNotesComponent, {
@@ -76,7 +83,7 @@ export class DisplayNotesComponent implements OnInit {
       if (result != undefined) {
         this.auth.updateNote(result.value).subscribe(
           data => {
-            this.displayNotes()
+            this.getNotes()
           },
           error => {
             console.log(error);
@@ -102,7 +109,7 @@ export class DisplayNotesComponent implements OnInit {
     this.noteData = this.helper.noteCheck(note)
     this.auth.updateNote(this.noteData).subscribe(
       data => {
-        this.displayNotes()
+        this.getNotes()
       },
       error =>{
         console.log(error);
