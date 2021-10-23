@@ -35,8 +35,13 @@ export class NoteComponent implements OnInit {
     
     this.getLabels()
     
+    
+    this.helper.updateLabel.subscribe(
+      data=>{
+        this.getLabels()
+      }
+    )
   }
-
   openDialog(): void {
     const dialogRef = this.labeldialog.open(EditlabelComponent, {
       width: '',

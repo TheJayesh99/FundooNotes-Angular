@@ -1,7 +1,9 @@
 import { Component,OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/services/auth/auth.service';
 import { HelperService } from 'src/services/helper/helper.service';
+import { label } from '../model/label.model';
 import { Notes } from '../model/notes.model';
 import { UpdateNotesComponent } from '../update-notes/update-notes.component';
 
@@ -17,10 +19,19 @@ export class DisplayNotesComponent implements OnInit {
   openMenu: number = 0;
   noteData:any = {}
   label = false;
+  removable = true;
+  selectable = true;
+  labelList:label[] = []
+  labelForm = this.fb.group({
+    id:[0,Validators.required],
+    label:["",Validators.required],
+    color:["white"]
+  })
   constructor(
     private auth: AuthService,
     public dialog: MatDialog,
     private helper: HelperService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -110,13 +121,59 @@ export class DisplayNotesComponent implements OnInit {
     )
   }
 
-  addLabel(note:Notes){
-    console.log("i called log label");
-    
+  getlabels(){
+    this.auth.userlabels().subscribe(
+      data=>{
+        this.labelList = data.data.label
+      }
+    )
   }
 
-  showAddlabel(){
-    this.label = !this.label
-    return this.label
+  showAddlabel(event:any){
+    event.stopPropagation()
+    this.label = true
+    this.getlabels()
+  }
+
+  addLabel(note:Notes,label:label){
+    this.label = false
+    let  labelALreadyData = false
+    for (let labels of note.label)
+    {    
+      if(labels.id === label.id){
+        labelALreadyData = true
+      }
+    }
+
+    if (!labelALreadyData){
+      note.label.push(label)
+      this.auth.setLabelToNotes(note).subscribe(
+        data=>{
+          console.log(data);
+          this.displayNotes()
+        }
+      )
+    }
+  }
+
+  removeLabelFromNote(note:Notes,label:label){
+    this.auth.removeLabelFromNote(note.id,label.id).subscribe(
+      data=>{
+        console.log(data);
+        this.displayNotes()
+      }
+    )
+  }
+
+  createNewLabel(){
+    if (this.labelForm.valid) {
+      this.auth.createLabel(this.labelForm.value).subscribe(
+        data=>{
+          console.log(data.data);
+          this.getlabels()
+          this.helper.updateLabel.next(data.data)
+        }
+      )
+    }
   }
 }

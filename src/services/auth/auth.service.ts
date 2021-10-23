@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Observable} from 'rxjs';
 import { label } from 'src/app/model/label.model';
 import { Notes } from 'src/app/model/notes.model';
+import { HelperService } from '../helper/helper.service';
 
 
 @Injectable({
@@ -25,6 +26,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private helper: HelperService
     ) { }
 
   SignUp(signUpData:FormBuilder):Observable<any>{
@@ -89,6 +91,24 @@ export class AuthService {
     return this.http.get(this.server+this.labelNotesUrl+label_id,{
       headers:this.header
     })
+  }
+
+  setLabelToNotes(note:Notes):Observable<any>{
+    let noteData = this.helper.noteCheck(note)
+    return  this.http.put(this.server+this.labelNotesUrl,noteData,{
+      headers:this.header
+    })
+  }
+
+  removeLabelFromNote(noteid:number,labelid:number):Observable<any>{
+    const options = {
+      headers: this.header,
+      body: {
+        "id":noteid,
+        "label_id":labelid
+      },
+    };
+    return this.http.delete(this.server+this.labelNotesUrl,options)
   }
 
   getlabel(label_id:number):Observable<any>{

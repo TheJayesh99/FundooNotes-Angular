@@ -71,12 +71,12 @@ export class EditlabelComponent implements OnInit {
   }
 
   updateLabel(label:label){
+    this.editId = 0
     if(this.updateLabelForm.valid){
       label.label = this.updateLabelForm.value.label
       this.auth.updatelabel(label).subscribe(
         data=>{
           console.log(data);
-          this.editId = 0
           this.getLabels()
         }
       )

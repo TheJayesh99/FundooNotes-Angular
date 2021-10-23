@@ -21,7 +21,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatMenuModule} from '@angular/material/menu'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatChipsModule} from '@angular/material/chips';
+import {MatChipsModule} from '@angular/material/chips'; 
 
 import {ReactiveFormsModule } from '@angular/forms';
 
