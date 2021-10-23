@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
+import { label } from 'src/app/model/label.model';
 import { Notes } from 'src/app/model/notes.model';
 
 @Injectable({
@@ -20,6 +21,7 @@ export class HelperService {
 
   noteNew:Subject<Notes> = new Subject<Notes>();
   newTitle:Subject<string> = new Subject<string>();
+  updateLabel:Subject<label> = new Subject<label>()
 
   constructor(private alert: MatSnackBar) { }
 
@@ -38,6 +40,8 @@ export class HelperService {
   noteCheck(note:Notes){
     let noteData:any = {}
     noteData = note
+    console.log(note);
+    
     if (note.label.length == 0){
       delete noteData.label;
     }
@@ -53,8 +57,8 @@ export class HelperService {
     }
     else{
       let collabList = []
-      for (let label of note.label){
-        collabList.push(label.id)
+      for (let collab of note.collaborators){
+        collabList.push(collab)
       }
       noteData.collaborators = collabList
     }
@@ -65,4 +69,5 @@ export class HelperService {
 title(title:string){
   this.newTitle.next(title)
 }
+
 }

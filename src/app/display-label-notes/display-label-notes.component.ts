@@ -19,7 +19,6 @@ export class DisplayLabelNotesComponent implements OnInit {
   noteData:any = {};
   label: boolean = false;
   label_id:number = 0
-  // elseBlock:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -122,6 +121,7 @@ export class DisplayLabelNotesComponent implements OnInit {
     
   }
 
+  
   showAddlabel(){
     this.label = !this.label
     return this.label
