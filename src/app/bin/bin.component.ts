@@ -19,9 +19,9 @@ export class BinComponent implements OnInit {
   noteData: any;
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     public dialog: MatDialog,
-    private helper: HelperService,
+    public helper: HelperService,
   ) { }
 
   ngOnInit(): void {

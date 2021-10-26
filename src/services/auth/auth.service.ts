@@ -25,7 +25,7 @@ export class AuthService {
   header = new HttpHeaders().set('token',this.getHeader())
 
   constructor(
-    private http: HttpClient,
+    public http: HttpClient,
     private helper: HelperService
     ) { }
 
@@ -61,8 +61,6 @@ export class AuthService {
   }
 
   updateNote(note:Notes):Observable<any>{
-    console.log(note);
-    
     return this.http.put(
       this.server+this.notesUrl,note,{
         headers: this.header

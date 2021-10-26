@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router
+    public auth: AuthService,
+    public router: Router
     ) {
 
   }
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         }
       )
     }
+    return false
   }
 
   get f() { 

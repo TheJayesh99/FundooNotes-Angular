@@ -28,9 +28,9 @@ export class DisplayNotesComponent implements OnInit {
     color:["white"]
   })
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     public dialog: MatDialog,
-    private helper: HelperService,
+    public helper: HelperService,
     private fb: FormBuilder
   ) { }
 
@@ -63,16 +63,12 @@ export class DisplayNotesComponent implements OnInit {
   displayNotes() {
     this.auth.fetchNotes().subscribe(
       data => {
-        console.log(data.data.notelist);
         this.noteList = []
         for (let note  of data.data.notelist){
           if (!note.is_binned && !note.is_archive){
             this.noteList.push(note)
           }
         }
-      },
-      error => {
-        console.log(error);
       }
     )
   }
@@ -129,8 +125,11 @@ export class DisplayNotesComponent implements OnInit {
     )
   }
 
-  showAddlabel(event:any){
-    event.stopPropagation()
+  showAddlabel(event:any = null)
+  {
+    if (event!=null){
+      event.stopPropagation()
+    }
     this.label = true
     this.getlabels()
   }

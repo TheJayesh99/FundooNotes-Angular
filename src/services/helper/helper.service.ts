@@ -40,7 +40,6 @@ export class HelperService {
   noteCheck(note:Notes){
     let noteData:any = {}
     noteData = note
-    console.log(note);
     
     if (note.label.length == 0){
       delete noteData.label;
