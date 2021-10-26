@@ -21,8 +21,8 @@ export class CreateNoteComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService,
-    private helper: HelperService
+    public auth: AuthService,
+    public helper: HelperService
   ) {
 
   }
@@ -31,9 +31,7 @@ export class CreateNoteComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("i am submitteds");
     if (this.createNoteForm.valid) {
-      console.log("i am valid");
       this.auth.createNote(this.createNoteForm.value).subscribe(
         data => {
           this.helper.noteAdded(data.data.note[0])

@@ -19,8 +19,8 @@ export class NoteComponent implements OnInit {
   title = "Notes"
 
   constructor(
-    private helper: HelperService,
-    private auth: AuthService,
+    public helper: HelperService,
+    public auth: AuthService,
     private labeldialog : MatDialog,
     public fb: FormBuilder,
   ) { }
@@ -56,7 +56,6 @@ export class NoteComponent implements OnInit {
   getLabels(){
     this.auth.userlabels().subscribe(
       data => {
-        console.log(data.data.label);
         this.labelsList = data.data.label
       }
     ) 

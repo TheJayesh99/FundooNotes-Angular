@@ -21,10 +21,10 @@ export class DisplayLabelNotesComponent implements OnInit {
   label_id:number = 0
 
   constructor(
-    private route: ActivatedRoute,
-    private auth: AuthService,
+    public route: ActivatedRoute,
+    public auth: AuthService,
     public dialog: MatDialog,
-    private helper: HelperService,
+    public helper: HelperService,
     ) 
     {
       this.route.params.subscribe( params => {
