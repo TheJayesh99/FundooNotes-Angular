@@ -21,7 +21,11 @@
           </mat-card-content>
           <div class="labels">
             <mat-chip-list aria-label="labels">
-              <mat-chip *ngFor="let label of note.label">{{label.label}}</mat-chip>
+              <mat-chip *ngFor="let label of note.label" [selectable]="selectable" [removable]="removable" (removed)="removeLabelFromNote(note,label)">{{label.label}}
+                <button matChipRemove *ngIf="removable">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
             </mat-chip-list>
           </div>
         </div>
@@ -51,15 +55,27 @@
 
               <mat-menu #menu="matMenu">
 
-                <div *ngIf="label; else elseBlock">
-                  <input mat-menu-item type="text" matInput placeholder="oye menu oye ">
+                
+              <div *ngIf="label; else elseBlock" class="add-label">
+                <form [formGroup]="labelForm">
+                <input mat-menu-item formControlName="label" (click)="$event.stopPropagation()" type="text" matInput
+                  placeholder="create new label">
+                <button mat-icon-button (click)="createNewLabel()" (click)="closeMenu(note)">
+                  create
+                </button>
+              </form>
+                <div *ngFor="let label of labelList">
+                  <p>
+                    <button mat-button (click)="addLabel(note,label)">{{label.label}}</button>
+                  </p>
                 </div>
+              </div>
 
-                <ng-template #elseBlock>
+              <ng-template #elseBlock>
                   <button mat-menu-item (click)="deleteNote(note)">
                     <span>Delete</span>
                   </button>
-                  <button mat-menu-item (click)="showAddlabel()" menuOpened>
+                  <button mat-menu-item (click)="showAddlabel($event)">
                     <span>Add Label</span>
                   </button>
                   <button mat-menu-item>

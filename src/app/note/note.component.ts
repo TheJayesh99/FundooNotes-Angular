@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth/auth.service';
 import { HelperService } from 'src/services/helper/helper.service';
 import { EditlabelComponent } from '../editlabel/editlabel.component';
@@ -18,11 +19,13 @@ export class NoteComponent implements OnInit {
   labelsList: label[] = []
   title = "Notes"
 
+
   constructor(
     public helper: HelperService,
     public auth: AuthService,
     private labeldialog : MatDialog,
     public fb: FormBuilder,
+    public router:Router
   ) { }
 
   ngOnInit(): void {
@@ -59,5 +62,10 @@ export class NoteComponent implements OnInit {
         this.labelsList = data.data.label
       }
     ) 
+  }
+
+  logout(){
+    localStorage.removeItem("currentUser")
+    this.router.navigate(["/login"])
   }
 }
