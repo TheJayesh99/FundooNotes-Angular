@@ -1,3 +1,4 @@
+import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
@@ -6,16 +7,17 @@ import { AuthService } from '../services/auth/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  user:string|null = ""
   constructor(
     private router: Router,
-    private authenticationService: AuthService
-  ) { }
+    public authenticationService: AuthService
+    ) {
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot) {
-    const user = this.authenticationService.currentUserValue;
-    if (user != null) {
+     }
+    
+    canActivate() {
+      this.user = this.authenticationService.currentUserValue;
+      if (this.user != null) {
       return true;
     }
     this.router.navigate(['/login']);

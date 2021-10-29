@@ -1,8 +1,10 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/services/auth/auth.service';
 import { HelperService } from 'src/services/helper/helper.service';
+import { label } from '../model/label.model';
 import { Notes } from '../model/notes.model';
 import { UpdateNotesComponent } from '../update-notes/update-notes.component';
 
@@ -19,12 +21,21 @@ export class DisplayLabelNotesComponent implements OnInit {
   noteData:any = {};
   label: boolean = false;
   label_id:number = 0
+  removable = true;
+  selectable = true;
+  labelList:label[] = []
+  labelForm = this.fb.group({
+    id:[0,Validators.required],
+    label:["",Validators.required],
+    color:["white"]
+  })
 
   constructor(
     public route: ActivatedRoute,
     public auth: AuthService,
     public dialog: MatDialog,
     public helper: HelperService,
+    public fb:FormBuilder
     ) 
     {
       this.route.params.subscribe( params => {
@@ -116,14 +127,62 @@ export class DisplayLabelNotesComponent implements OnInit {
     )
   }
 
-  addLabel(note:Notes){
-    console.log("i called log label");
-    
+  addLabel(note:Notes,label:label){
+    this.label = false
+    let  labelALreadyData = false
+    for (let labels of note.label)
+    {    
+      if(labels.id === label.id){
+        labelALreadyData = true
+      }
+    }
+
+    if (!labelALreadyData){
+      note.label.push(label)
+      this.auth.setLabelToNotes(note).subscribe(
+        data=>{
+          console.log(data);
+          this.getNotes()
+        }
+      )
+    }
   }
 
+
+  getlabels(){
+    this.auth.userlabels().subscribe(
+      data=>{
+        this.labelList = data.data.label
+      }
+    )
+  }
   
-  showAddlabel(){
-    this.label = !this.label
-    return this.label
+  showAddlabel(event:any = null)
+  {
+    if (event!=null){
+      event.stopPropagation()
+    }
+    this.label = true
+    this.getlabels()
+  }
+
+  removeLabelFromNote(note:Notes,label:label){
+    this.auth.removeLabelFromNote(note.id,label.id).subscribe(
+      data=>{
+        this.getNotes()
+      }
+    )
+  }
+
+  createNewLabel(){
+    if (this.labelForm.valid) {
+      this.auth.createLabel(this.labelForm.value).subscribe(
+        data=>{
+          console.log(data.data);
+          this.getlabels()
+          this.helper.updateLabel.next(data.data)
+        }
+      )
+    }
   }
 }
