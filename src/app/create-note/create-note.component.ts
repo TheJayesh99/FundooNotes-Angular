@@ -38,7 +38,7 @@ export class CreateNoteComponent implements OnInit {
           this.accordion.closeAll()
         },
         error => {
-          console.log(error.error.message);
+      
         }
       )
     }

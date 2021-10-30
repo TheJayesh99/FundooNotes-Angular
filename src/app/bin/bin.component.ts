@@ -53,7 +53,7 @@ export class BinComponent implements OnInit {
   displayNotes() {
     this.auth.fetchNotes().subscribe(
       data => {
-        console.log(data.data.notelist);
+      
         this.noteList = []
       for(let note of data.data.notelist){
         if (note.is_binned){
@@ -62,7 +62,7 @@ export class BinComponent implements OnInit {
       }
       },
       error => {
-        console.log(error);
+    
       }
     )
   }
@@ -83,14 +83,14 @@ export class BinComponent implements OnInit {
   undoDelete(note: Notes) {
     note.is_binned = false;
     this.noteData = this.helper.noteCheck(note)
-    console.log(this.noteData);
+
 
     this.auth.updateNote(this.noteData).subscribe(
       data => {
         this.displayNotes()
       },
       error => {
-        console.log(error);
+
       }
     )
   }
@@ -102,7 +102,6 @@ export class BinComponent implements OnInit {
         this.helper.alerts_box("note deleted", "close")
       },
       error => {
-        console.log(error);
       }
     )
   }

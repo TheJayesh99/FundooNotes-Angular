@@ -86,7 +86,7 @@ export class DisplayNotesComponent implements OnInit {
             this.displayNotes()
           },
           error => {
-            console.log(error);
+           
           }
         )
       }
@@ -112,7 +112,7 @@ export class DisplayNotesComponent implements OnInit {
         this.displayNotes()
       },
       error =>{
-        console.log(error);
+     
       }
     )
   }
@@ -148,7 +148,6 @@ export class DisplayNotesComponent implements OnInit {
       note.label.push(label)
       this.auth.setLabelToNotes(note).subscribe(
         data=>{
-          console.log(data);
           this.displayNotes()
         }
       )
@@ -158,7 +157,7 @@ export class DisplayNotesComponent implements OnInit {
   removeLabelFromNote(note:Notes,label:label){
     this.auth.removeLabelFromNote(note.id,label.id).subscribe(
       data=>{
-        console.log(data);
+       
         this.displayNotes()
       }
     )
@@ -168,7 +167,6 @@ export class DisplayNotesComponent implements OnInit {
     if (this.labelForm.valid) {
       this.auth.createLabel(this.labelForm.value).subscribe(
         data=>{
-          console.log(data.data);
           this.getlabels()
           this.helper.updateLabel.next(data.data)
         }
