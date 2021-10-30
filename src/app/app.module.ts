@@ -26,6 +26,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+
 import { NoteComponent } from './note/note.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { DisplayNotesComponent } from './display-notes/display-notes.component';
@@ -72,7 +74,9 @@ import { DisplayLabelNotesComponent } from './display-label-notes/display-label-
     MatSnackBarModule,
     MatChipsModule,
   ],
-  providers: [],
+  providers: [
+    {provide : LocationStrategy , useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
