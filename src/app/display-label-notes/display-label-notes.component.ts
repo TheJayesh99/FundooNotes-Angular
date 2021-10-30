@@ -52,7 +52,6 @@ export class DisplayLabelNotesComponent implements OnInit {
   getLabelName(){
     this.auth.getlabel(this.label_id).subscribe(
       data=>{
-        console.log(data.data.label[0].label);
         this.helper.newTitle.next(data.data.label[0].label)
       }
     )
@@ -96,7 +95,7 @@ export class DisplayLabelNotesComponent implements OnInit {
             this.getNotes()
           },
           error => {
-            console.log(error);
+            
           }
         )
       }
@@ -122,7 +121,7 @@ export class DisplayLabelNotesComponent implements OnInit {
         this.getNotes()
       },
       error =>{
-        console.log(error);
+      
       }
     )
   }
@@ -141,7 +140,7 @@ export class DisplayLabelNotesComponent implements OnInit {
       note.label.push(label)
       this.auth.setLabelToNotes(note).subscribe(
         data=>{
-          console.log(data);
+  
           this.getNotes()
         }
       )
@@ -178,7 +177,7 @@ export class DisplayLabelNotesComponent implements OnInit {
     if (this.labelForm.valid) {
       this.auth.createLabel(this.labelForm.value).subscribe(
         data=>{
-          console.log(data.data);
+          
           this.getlabels()
           this.helper.updateLabel.next(data.data)
         }

@@ -44,7 +44,6 @@ export class EditlabelComponent implements OnInit {
   getLabels(){
     this.auth.userlabels().subscribe(
       data => {
-        console.log(data.data.label);
         this.labelList = data.data.label
       }
     ) 
@@ -54,7 +53,7 @@ export class EditlabelComponent implements OnInit {
     if (this.labelForm.valid) {
       this.auth.createLabel(this.labelForm.value).subscribe(
         data=>{
-          console.log(data);
+          
           this.getLabels()
         }
       )
@@ -64,7 +63,7 @@ export class EditlabelComponent implements OnInit {
   removeLabel(label:label){
     this.auth.deleteLabel(label.id).subscribe(
       data=>{
-        console.log(data);
+        
         this.getLabels()
       }
     )
@@ -76,7 +75,7 @@ export class EditlabelComponent implements OnInit {
       label.label = this.updateLabelForm.value.label
       this.auth.updatelabel(label).subscribe(
         data=>{
-          console.log(data);
+         
           this.getLabels()
         }
       )

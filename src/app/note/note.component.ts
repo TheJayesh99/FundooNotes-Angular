@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -23,24 +23,32 @@ export class NoteComponent implements OnInit {
   constructor(
     public helper: HelperService,
     public auth: AuthService,
-    private labeldialog : MatDialog,
+    private labeldialog: MatDialog,
     public fb: FormBuilder,
-    public router:Router
-  ) { }
+    public router: Router,
+    private ref: ChangeDetectorRef
+  ) {
+    ref.detach();
+    setInterval(() => {
+      this.ref.detectChanges();
+    }, 5);
+  }
 
   ngOnInit(): void {
 
     this.helper.newTitle.subscribe(
+
       data => {
+        this.ref.detach();
         this.title = data
       }
     )
-    
+
     this.getLabels()
-    
-    
+
+
     this.helper.updateLabel.subscribe(
-      data=>{
+      data => {
         this.getLabels()
       }
     )
@@ -48,23 +56,23 @@ export class NoteComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.labeldialog.open(EditlabelComponent, {
       width: '',
-      data:this.labelsList
+      data: this.labelsList
     });
 
-    dialogRef.afterClosed().subscribe(result =>{
+    dialogRef.afterClosed().subscribe(result => {
       this.getLabels()
     })
   }
 
-  getLabels(){
+  getLabels() {
     this.auth.userlabels().subscribe(
       data => {
         this.labelsList = data.data.label
       }
-    ) 
+    )
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem("currentUser")
     this.router.navigate(["/login"])
   }

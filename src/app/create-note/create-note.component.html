@@ -3,12 +3,11 @@
         <mat-accordion multi>
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
-                    <textarea class="UpdateNoteInput" matInput type="text" placeholder="Title" formControlName="title"
+                    <textarea matInput class="UpdateNoteInput"  type="text" placeholder="Title" formControlName="title"
                         [cdkTextareaAutosize]></textarea>
                 </mat-expansion-panel-header>
-                <mat-form-field appearance="standard">
-                    <mat-label>Description</mat-label>
-                    <textarea class="UpdateNoteInput" matInput type="text" placeholder="Description"
+                <mat-form-field appearance="standard" style="width:100%">
+                    <textarea matInput class="UpdateNoteInput"  type="text" placeholder="Description"
                         formControlName="description" [cdkTextareaAutosize]></textarea>
                 </mat-form-field>
                 <br>
