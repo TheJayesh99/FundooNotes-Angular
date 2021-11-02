@@ -12,7 +12,7 @@ import { HelperService } from '../helper/helper.service';
 })
 export class AuthService {
   
-  private readonly server = "http://127.0.0.1:8000"
+  private readonly server = "http://ec2-52-66-252-217.ap-south-1.compute.amazonaws.com:8000"
   private readonly registerUrl = "/user/register/"
   private readonly loginUrl = "/user/login/"
   private readonly notesUrl = "/notes/"
