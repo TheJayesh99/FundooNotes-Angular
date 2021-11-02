@@ -4,7 +4,7 @@
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                     <textarea matInput class="UpdateNoteInput"  type="text" placeholder="Title" formControlName="title"
-                        [cdkTextareaAutosize]></textarea>
+                        [cdkTextareaAutosize]  (keydown.Space)='$event.stopPropagation();'></textarea>
                 </mat-expansion-panel-header>
                 <mat-form-field appearance="standard" style="width:100%">
                     <textarea matInput class="UpdateNoteInput"  type="text" placeholder="Description"
