@@ -36,7 +36,13 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value).subscribe(
         data =>{
           localStorage.setItem('currentUser',data.data.token)
-          this.router.navigate(['/notes'])
+          setTimeout(
+            () => {
+              this.router.navigate(['/notes'])
+            },
+            5000
+
+          )
         },
         error =>{
           this.errorMessage = error.error.message 

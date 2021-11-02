@@ -53,8 +53,8 @@ export class EditlabelComponent implements OnInit {
     if (this.labelForm.valid) {
       this.auth.createLabel(this.labelForm.value).subscribe(
         data=>{
-          
           this.getLabels()
+          this.labelForm.reset()
         }
       )
     }
@@ -75,8 +75,8 @@ export class EditlabelComponent implements OnInit {
       label.label = this.updateLabelForm.value.label
       this.auth.updatelabel(label).subscribe(
         data=>{
-         
           this.getLabels()
+          
         }
       )
     }

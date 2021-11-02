@@ -36,6 +36,7 @@ export class CreateNoteComponent implements OnInit {
         data => {
           this.helper.noteAdded(data.data.note[0])
           this.accordion.closeAll()
+          this.createNoteForm.reset()
         },
         error => {
       
